@@ -1,7 +1,7 @@
 from collections import Counter
 #obtain cipher
 #analyze cipher
-#calculate index of coincidence
+#calculates index of coincidence: if ic is between zero and .065 it is likely a monoalphabet substituion.  If the number is between .035 and .065 or less than .035, then we have a polyalpah.
 
 letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
