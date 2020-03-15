@@ -56,19 +56,6 @@ def idx_concdnce (cipher, alpha):
     
     return float(x)
 
-ixc=idx_concdnce (example, letters)
-print ("The incidence of coincidence is: ", ixc)
-print (example2)
-ixc2=idx_concdnce (example2, letters)
-print ("The incidence of coincidence is: ", ixc2)
-
-ixc3=idx_concdnce (example3.upper(), letters)
-print ("The incidence of coincidence is: ", ixc3)
-
-
-ixc4=idx_concdnce (example4, letters)
-print ("The incidence of coincidence is: ", ixc4)
-
 #guess key length. Guess length.  m = 0.027n/((n- 1)Icx - 0.038n + 0.065.  This is called the Friedman formula for guessing the length of a key used to encrypt the message and
 #produce the cipher 
 
@@ -82,5 +69,29 @@ def friedman_length_guess(cipher, alpha):
     
     return l
 
+###Testing
+
+ixc=idx_concdnce (example, letters)
+ln=friedman_length_guess(example, letters)
+print ("The incidence of coincidence is: ", ixc)
+print ("The Friedman key length guess is: ", ln)
+
+ixc2=idx_concdnce (example2, letters)
+ln2=friedman_length_guess(example2, letters)
+print ("The incidence of coincidence is: ", ixc2)
+print ("The Friedman key length guess is: ", ln2)
+
+ixc3=idx_concdnce (example3.upper(), letters)
+ln3=friedman_length_guess(example3.upper(), letters)
+print ("The incidence of coincidence is: ", ixc3)
+print ("The Friedman key length guess is: ", ln3)
+
+ixc4=idx_concdnce (example4, letters)
+ln4=friedman_length_guess(example4, letters)
+print ("The incidence of coincidence is: ", ixc4)
+print ("The Friedman key length guess is: ", ln4)
+
 #identify period for key
+
+
 #determine blocks
