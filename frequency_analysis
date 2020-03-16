@@ -9,6 +9,9 @@ eng_freq = [.0817, .0149, .0278, .0425, .1270, .0223, .0202, .0609, .0697, 0015,
 .0077, .0403, .0241, .0675, .0751, .0193, .0010, .0599, .0633, .0906, .0276, 
 .0098, .0236, .0015, .0197, .0007]
 
+
+Key_guess= dict({1: 0.0660, 2: 0.0520, 3: 0.0473, 4: 0.0449, 5: 0.0435, 6: 0.0426, 7: 0.0419, 8: 0.0414, 9: 0.0410, 10: 0.0407})
+
 #Polyalpha
 example = "UZRZEGNJENVLISEXRHLYPYEGTESBJHJCSBPTGDYFXXBHEEIFTCCHVRKPNHWXPCTUQTGDJHTBIPRFEMJCNHVTCFSAIIJENREGSALHXHWZWRZXGTTVWGDHTEYXISAGQTCJPRSIAPTUMGZALHXHHSOHPWCZLBRZTCBRGHCDIQIKTOAAEFTOPYEGTENRAIALNRXLPCEPYKGPNGPRQPIAKWXDCBZXGPDNRWXEIFZXGJLVOXAJTUEMBLNLQHGPWVPEQPIAXATYENVYJEUEI"
 
@@ -56,17 +59,30 @@ def idx_concdnce (cipher, alpha):
     
     return float(x)
 
-#guess key length. Guess length.  m = 0.027n/((n- 1)Icx - 0.038n + 0.065.  This is called the Friedman formula for guessing the length of a key used to encrypt the message and
-#produce the cipher 
+
+#Guess length.  m = 0.027n/((n- 1)Icx - 0.038n + 0.065.  This is called the #Friedman formula for guessing the length of a key used to encrypt the message and
+#produce the cipher.  The guess, for keys between 1 and 10 is based on the #largest key_length between the calculation and a dictionary mapping for length #and incidence of coincidence
 
 
 def friedman_length_guess(cipher, alpha):
     l = 0
-    
+    l2=0
     n = len(cipher)
     i = idx_concdnce(cipher, alpha)
     l = n * (0.027)/((n-1)*i + 0.0655 - (0.0385*n))
-    
+
+    print ("first guess:", l)
+    if i > .038:
+	for keys in Key_guess:
+	  if i > Key_guess[keys]:
+		l2=keys
+		break 
+	print ("second guess:", l2)
+		
+
+    if l2 > l:
+	l=l2	
+
     return l
 
 ###Testing
